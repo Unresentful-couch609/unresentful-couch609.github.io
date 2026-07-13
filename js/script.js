@@ -291,4 +291,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+/* -----------------------------------------------------
+   11. PROJECT FILTERING
+   ----------------------------------------------------- */
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projectCards = document.querySelectorAll(
+    ".project-showcase-card"
+);
+
+filterButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const selectedFilter =
+            button.getAttribute("data-filter");
+
+        filterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        projectCards.forEach((card) => {
+
+            const category =
+                card.getAttribute("data-category");
+
+            if (
+                selectedFilter === "all" ||
+                category === selectedFilter
+            ) {
+
+                card.classList.remove("hidden-project");
+
+            } else {
+
+                card.classList.add("hidden-project");
+
+            }
+
+        });
+
+    });
+
+});
 });
